@@ -32,7 +32,7 @@ apt-get -y wget
 #needed by openvpn-nl
 apt-get -y install apt-transport-https
 #adding source list
-echo "deb https://openvpn.fox-it.com/repos/deb wheezy main" > /etc/apt/sources.list.d/foxit.list
+echo deb https://openvpn.fox-it.com/repos/deb wheezy main > /etc/apt/sources.list.d/foxit.list
 apt-get update
 wget https://openvpn.fox-it.com/repos/fox-crypto-gpg.asc
 apt-key add fox-crypto-gpg.asc
@@ -69,8 +69,8 @@ aptitude -y install squid3
 rm -f /etc/squid3/squid.conf
 
 #restoring squid config with open port proxy 8080,7166
-wget -P /etc/squid3/ "https://raw.githubusercontent.com/zero9911/script/master/script/squid.conf"
-sed -i "s/$myip/$IP/g" /etc/squid3/squid.conf
+wget -P /etc/squid3/ https://raw.githubusercontent.com/zero9911/script/master/script/squid.conf
+sed -i s/$myip/$IP/g /etc/squid3/squid.conf
 service squid3 restart
 cd
 
@@ -103,7 +103,7 @@ cd
 #ssh
 sed -i 's/#Banner/Banner/g' /etc/ssh/sshd_config
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
-wget -O /etc/issue.net " https://raw.githubusercontent.com/zero9911/script/master/script/banner"
+wget -O /etc/issue.net https://raw.githubusercontent.com/zero9911/script/master/script/banner
 
 clear
 echo 
@@ -129,7 +129,7 @@ sed -i "s/ssl=1/ssl=0/g" /etc/webmin/miniserv.conf
 cd
 
 #config upload
-wget -O /home/vps/public_html/client.ovpn " https://raw.githubusercontent.com/zero9911/script/master/script/max.ovpn"
+wget -O /home/vps/public_html/client.ovpn https://raw.githubusercontent.com/zero9911/script/master/script/max.ovpn
 sed -i "s/ipserver/$myip/g" /home/vps/public_html/max.ovpn
 cd
 
